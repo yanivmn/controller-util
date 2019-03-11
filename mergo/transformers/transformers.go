@@ -36,14 +36,14 @@ func init() {
 	PodSpec = TransformerMap{
 		reflect.TypeOf([]corev1.Container{}):            PodSpec.MergeListByKey("Name", mergo.WithOverride),
 		reflect.TypeOf([]corev1.ContainerPort{}):        PodSpec.MergeListByKey("ContainerPort", mergo.WithOverride),
-		reflect.TypeOf([]corev1.EnvVar{}):               PodSpec.MergeListByKey("Name", mergo.WithOverride),
+		reflect.TypeOf([]corev1.EnvVar{}):               PodSpec.MergeListByKey("Name", mergo.WithAppendSlice),
 		reflect.TypeOf(corev1.EnvVar{}):                 PodSpec.OverrideFields("Value", "ValueFrom"),
 		reflect.TypeOf(corev1.VolumeSource{}):           PodSpec.NilOtherFields(),
 		reflect.TypeOf([]corev1.Toleration{}):           PodSpec.MergeListByKey("Key", mergo.WithOverride),
-		reflect.TypeOf([]corev1.Volume{}):               PodSpec.MergeListByKey("Name", mergo.WithOverride),
+		reflect.TypeOf([]corev1.Volume{}):               PodSpec.MergeListByKey("Name", mergo.WithAppendSlice),
 		reflect.TypeOf([]corev1.LocalObjectReference{}): PodSpec.MergeListByKey("Name", mergo.WithOverride),
 		reflect.TypeOf([]corev1.HostAlias{}):            PodSpec.MergeListByKey("IP", mergo.WithOverride),
-		reflect.TypeOf([]corev1.VolumeMount{}):          PodSpec.MergeListByKey("MountPath", mergo.WithOverride),
+		reflect.TypeOf([]corev1.VolumeMount{}):          PodSpec.MergeListByKey("MountPath", mergo.WithAppendSlice),
 	}
 }
 
